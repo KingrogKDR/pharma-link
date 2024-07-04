@@ -24,31 +24,23 @@ function LandingPage() {
             <img src={logo} alt="logo"
                 className="mb-12"
             />
-            <div className="w-[70%] flex justify-between bg-sky-600 items-center text-white rounded-full px-10 py-4 font-primary font-medium text-xl cursor-pointer ml-20 shadow-md shadow-blue-700">
+            <div className="w-[70%] flex bg-sky-600 items-center text-white rounded-full px-10 py-4 font-primary font-medium text-xl cursor-pointer ml-20 shadow-md shadow-blue-700">
                 <button
-                    className="w-3/4 hover:scale-105
+                    className="w-full hover:scale-105
+                    flex
+                    justify-between
+                    items-center
                     ease-in 
                     transition
                     duration-300
                     text-center
                     "
                     onClick={goToForm}
-                >Enter Your Symptoms</button>
-                <button className="w-1/4
-                    hover:scale-125
-                    ease-out 
-                    transition
-                    duration-300
-                    lg:px-6
-                    "
-                    onClick={goToForm}
-                >
-                    <img src={right} alt="enter the site" 
-                        className="size-12
-                            
-                        "
-                    />
-                </button>
+                >Enter Your Symptoms
+                  <img src={right} alt="enter the site" 
+                        className="size-12"
+                  />
+                </button>            
             </div>
         </div>
     </div>
