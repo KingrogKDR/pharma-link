@@ -20,11 +20,11 @@ function LandingPage() {
     <div style={divStyle}
         className="relative flex py-40 lg:py-12 justify-center"
     >
-        <div className="w-[400px] h-[200px] lg:w-[600px] grid absolute justify-center items-center">
+        <div className="w-[400px] h-[200px] lg:w-[600px] flex-1 absolute justify-center items-center">
             <img src={logo} alt="logo"
                 className="mb-12"
             />
-            <div className="w-[70%] flex bg-sky-600 items-center text-white rounded-full px-10 py-4 font-primary font-medium text-xl cursor-pointer ml-20 shadow-md shadow-blue-700">
+            <div className="w-[80%] flex bg-sky-600 items-center text-white rounded-full px-10 py-4 font-primary font-medium text-xl cursor-pointer ml-16 shadow-md shadow-blue-700">
                 <button
                     className="w-full hover:scale-105
                     flex
