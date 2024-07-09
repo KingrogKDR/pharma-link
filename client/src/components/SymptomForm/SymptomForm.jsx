@@ -1,20 +1,11 @@
-import { useState } from "react";
 import Date from "./Date";
 import FormField from "./FormField";
-import Symptoms from "./Symptoms";
+import Selection from "./Selection";
 import Title from "./Title";
 
+
+
 function SymptomForm() {
-  const [checkboxes, setCheckboxes] = useState({
-    yes: false,
-    no: false,
-  });
-
-  const handleChange = (event) => {
-    const { name, checked } = event.target;
-    setCheckboxes({ ...checkboxes, [name]: checked });
-  };
-
   return (
     <>
       {/* title div */}
@@ -47,14 +38,30 @@ function SymptomForm() {
         <p className="mt-6 mb-4 ml-1">Date</p>
         <Date />
 
+        {/* gender div */}
+        <p className="mt-6 mb-4 ml-1">Gender</p>
+        <div>
+          <input
+            type="text"
+            className="w-[50%] h-[15px] border-2 border-gray-400 px-6 py-4 rounded-lg mr-4"
+          />
+          <p className="mt-3 text-sm text-gray-600">Male/Female/Others</p>
+        </div>
+
+        {/* age div */}
+        <p className="mt-6 mb-4 ml-1">Age</p>
+        <div>
+          <input
+            type="number"
+            className="w-[20%] h-[15px] border-2 border-gray-400 px-6 py-4 rounded-lg mr-4"
+          />
+        </div>
+        
         {/* symptoms experienced div */}
-        <p className="mt-6 mb-4 ml-1">
-          Which symptoms have you experienced in this period?
-        </p>
+        
+        
 
-        <Symptoms />
-
-        {/* type of activities div */}
+        {/* type of sactivities div */}
         <p className="mt-6 mb-4 ml-1">
           What type of activities have you done? Please briefly explain.
         </p>
@@ -68,28 +75,7 @@ function SymptomForm() {
         {/* if on medication check div */}
         <p className="mt-6 mb-4 ml-1">If you are on medication, did you take your medication?</p>
 
-        <div>
-          <label className="block">
-            <input
-              type="checkbox"
-              name="yes"
-              checked={checkboxes.yes}
-              onChange={handleChange}
-              className="mr-2"
-            />
-            Yes
-          </label>
-          <label className="block">
-            <input
-              type="checkbox"
-              name="no"
-              checked={checkboxes.no}
-              onChange={handleChange}
-              className="mr-2"
-            />
-            No
-          </label>
-        </div>
+        <Selection />
 
         {/* other triggers/symptoms if exists*/}
         <p className="mt-6 mb-4 ml-1">If exists, explain other triggers that affect your health</p>
