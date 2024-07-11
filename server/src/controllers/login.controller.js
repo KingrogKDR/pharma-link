@@ -1,9 +1,11 @@
-import pool from "../db/db.js";
-import bcrypt from 'bcrypt'
-
-const dbPool = pool;
+import {pool, resetIdSequence} from "../db/db.js";
+import bcrypt from 'bcrypt';
+import { generateAccessandRefreshTokens } from "../utils/cookies.js";
+import { getUserByUsername } from "../utils/getUser.js";
 
 const loginHandler = async (req, res) => {
+  await resetIdSequence()
+
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -13,23 +15,37 @@ const loginHandler = async (req, res) => {
   }
 
   try {
-    const getUser = await dbPool.query(
-      "SELECT * FROM users WHERE username = $1",
-      [username]
-    );
 
-    const user = getUser.rows[0];
+    const user = await getUserByUsername(username)
 
-    const isMatched = await bcrypt.compare(password, user.password)
-
-    if(!isMatched){
-        return res.status(400).json({"error": "Invalid username or password!"})
+    if(!user){
+      return res.status(400).json({error: "User doesn't exit. Please sign up!"})
     }
-        
-    res.status(200).json({"Success" : "Logged in successfully"})
+    
+    const isMatched = await bcrypt.compare(password, user.password)
+    
+    if(!isMatched){
+      return res.status(400).json({"error": "Invalid username or password!"})
+    }
+    const options = {
+      httpOnly: true,
+      secure: true
+    }
+    
+    const {accessToken, refreshToken} = generateAccessandRefreshTokens(user)
+    
+    await pool.query(
+      'UPDATE users SET refreshtoken = $1 where id = $2',
+      [refreshToken, user.id]
+    )
+    
+    return res.status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json({"Success" : "User logged in"})
 
   } catch (error) {
-    res.status(500).json({ error: `Cannot Login User: ${error.message}` });
+    return res.status(500).json({ error: `Cannot Login User: ${error.message}` });
   }
 };
 
