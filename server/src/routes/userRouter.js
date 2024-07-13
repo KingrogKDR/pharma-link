@@ -7,11 +7,11 @@ import { refreshAccessToken } from "../utils/cookies.js";
 
 const userRouter = Router()
 
-userRouter.route('/sign-up').post(signUpHandler)
-userRouter.route('/login').post(loginHandler)
+userRouter.post('/signup',signUpHandler)
+userRouter.post('/login', loginHandler)
 
 //secured routes
-userRouter.route('/logout').post(verifyJwt, logoutHandler)
-userRouter.route('/refresh-token').post(refreshAccessToken)
+userRouter.post('/logout', verifyJwt, logoutHandler)
+userRouter.post('/refresh-token', refreshAccessToken)
 
 export {userRouter}

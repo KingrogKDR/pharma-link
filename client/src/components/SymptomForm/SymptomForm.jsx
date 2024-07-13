@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Date from "./Date";
 import FormField from "./FormField";
 import Selection from "./Selection";
@@ -6,6 +7,14 @@ import Title from "./Title";
 
 
 function SymptomForm() {
+
+  const [age, setAge] = useState(0)
+
+  const handleAge = (count) => {
+    if(count >= 0 && count<=150) setAge(count++)
+    else setAge(0)
+  }
+
   return (
     <>
       {/* title div */}
@@ -53,7 +62,9 @@ function SymptomForm() {
         <div>
           <input
             type="number"
+            value={age}
             className="w-[20%] h-[15px] border-2 border-gray-400 px-6 py-4 rounded-lg mr-4"
+            onChange={(e) => handleAge(e.target.value)}
           />
         </div>
         

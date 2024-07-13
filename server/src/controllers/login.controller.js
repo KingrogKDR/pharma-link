@@ -19,13 +19,13 @@ const loginHandler = async (req, res) => {
     const user = await getUserByUsername(username)
 
     if(!user){
-      return res.status(400).json({error: "User doesn't exit. Please sign up!"})
+      return res.status(400).json({error: "User doesn't exist. Please sign up!"})
     }
     
     const isMatched = await bcrypt.compare(password, user.password)
     
     if(!isMatched){
-      return res.status(400).json({"error": "Invalid username or password!"})
+      return res.status(400).json({error: "Invalid username or password!"})
     }
     const options = {
       httpOnly: true,

@@ -17,7 +17,7 @@ const verifyJwt = async (req, res, next) => {
             return res.status(401).json({ error: 'Unauthorized Request: User not found!' });
         }
         
-        req.user = user
+        req.user = user 
         next()
     } catch (error) {
         res.status(500).json({"error" : `Invalid Access Token: ${error.message}`})
