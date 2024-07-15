@@ -12,7 +12,9 @@ function SignUp() {
 
   const { setIsLoggedIn } = useAuth()
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
     try {
       fetch("http://localhost:3000/users/signup", {
         method: "POST",

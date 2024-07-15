@@ -34,6 +34,7 @@ function App() {
                 <SignUp />
               </Suspense>
             } />
+            <Route path="*" element={<p className="text-bold text-4xl">Path not resolved</p>} />
           </Routes>
         </Router>        
       </AuthProvider>
