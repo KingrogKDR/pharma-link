@@ -59,11 +59,15 @@ function SymptomForm() {
         
         {/* symptoms experienced div */}
         
-        
+        <p className="mt-6 mb-4 ml-1">
+          What symptoms have you experienced?
+        </p>
+
+        <FormField placeholder="Fever, dizzines, nausea, etc." />
 
         {/* type of sactivities div */}
         <p className="mt-6 mb-4 ml-1">
-          What type of activities have you done? Please briefly explain.
+          What type of activities have you done? Please briefly explain?
         </p>
 
         <FormField placeholder="Sitting, Running, Working on computer, etc." />
