@@ -6,6 +6,7 @@ const Login = React.lazy(() => import("./components/Login/Login"))
 const SignUp = React.lazy(() => import("./components/SignUp/SignUp"))
 import { AuthProvider } from "./utils/AuthContext";
 import Loading from "./components/Loading/Loading";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
 
@@ -34,7 +35,7 @@ function App() {
                 <SignUp />
               </Suspense>
             } />
-            <Route path="*" element={<p className="text-bold text-4xl">Path not resolved</p>} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>        
       </AuthProvider>
